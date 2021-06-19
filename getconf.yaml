@@ -1,0 +1,17 @@
+---
+- name: get runnig-config
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: display run-conf
+      ios_command:
+        commands:
+          - show running-config
+      register: output
+
+    - name: save run_conf
+      copy:
+        content: "{{ output.stdout[0] }}"
+        dest: "backups/show_run_conf_{{ inventory_hostname }}.txt"
