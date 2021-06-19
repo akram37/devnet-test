@@ -14,4 +14,4 @@
     - name: save run_conf
       copy:
         content: "{{ output.stdout[0] }}"
-        dest: "show_run_conf_{{ inventory_hostname }}.txt"
+        dest: "backups/show_run_conf_{{ inventory_hostname }}.txt"
